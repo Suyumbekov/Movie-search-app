@@ -18,11 +18,6 @@ interface Movie {
   genre_ids: number[];
 }
 
-interface Genre {
-  id: number;
-  name: string;
-}
-
 const MovieList = async () => {
   const apiKey = process.env.API_KEY;
   const movieUrl = `https://api.themoviedb.org/3/search/movie?query=return&api_key=${apiKey}`;
@@ -35,7 +30,7 @@ const MovieList = async () => {
   const genres = ["Action", "Drama"];
 
   if (movies.length === 0) {
-    return <div>No movies found.</div>;
+    throw new Error("Error in fetching movies");
   }
 
   return (
